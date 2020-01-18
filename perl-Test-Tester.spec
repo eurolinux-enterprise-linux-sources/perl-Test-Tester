@@ -1,6 +1,6 @@
 Name:           perl-Test-Tester
 Version:        0.109
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Ease testing test modules built with Test::Builder
 License:        Artistic clarified
 Group:          Development/Libraries
@@ -9,12 +9,18 @@ Source0:        http://www.cpan.org/authors/id/F/FD/FDALY/Test-Tester-%{version}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl(ExtUtils::MakeMaker)
+BuildRequires:  perl(Config)
 BuildRequires:  perl(Data::Dumper)
 BuildRequires:  perl(Exporter)
 BuildRequires:  perl(lib)
+BuildRequires:  perl(strict)
 BuildRequires:  perl(Test::Builder)
 BuildRequires:  perl(Test::More)
+BuildRequires:  perl(threads::shared)
+BuildRequires:  perl(vars)
+BuildRequires:  perl(warnings)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:       perl(threads::shared)
 
 %description
 If you have written a test module based on Test::Builder then Test::Tester
@@ -50,6 +56,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %changelog
+* Mon Jan 27 2014 Jitka Plesnikova <jplesnik@redhat.com> - 0.109-3
+- Specify all dependencies
+- Resolves: rhbz#1058288
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.109-2
+- Mass rebuild 2013-12-27
+
 * Thu Jul 11 2013 Paul Howarth <paul@city-fan.org> - 0.109-1
 - Update to 0.109
   - Add minimal support for note and explain (i.e. don't crash)
